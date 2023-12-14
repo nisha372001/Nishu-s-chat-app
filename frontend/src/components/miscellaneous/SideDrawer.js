@@ -33,7 +33,7 @@ import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
 import EditModal from "./EditProfile";
 
-function SideDrawer({ boxColor}) {
+function SideDrawer({ boxColor, handleColorChange }) {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -139,24 +139,48 @@ function SideDrawer({ boxColor}) {
         borderColor="white"
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
-          <Button variant="ghost" onClick={onOpen} >
-            <i className="fas fa-search" style={{ color: boxColor === 'black' ? '#fff' : '#000' }}></i>
-            <Text display={{ base: "none", md: "flex" }} px={4} color={boxColor === 'black' ? 'white' : 'black'}>
+          <Button variant="ghost" onClick={onOpen}>
+            <i
+              className="fas fa-search"
+              style={{ color: boxColor === "black" ? "#fff" : "#000" }}
+            ></i>
+            <Text
+              display={{ base: "none", md: "flex" }}
+              px={4}
+              color={boxColor === "black" ? "white" : "black"}
+            >
               Search User
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans" color={boxColor === 'black' ? 'white' : 'black'}>
+        <Text
+          fontSize="2xl"
+          fontFamily="Work sans"
+          color={boxColor === "black" ? "white" : "black"}
+        >
           NISHU'S CHAT APP
         </Text>
         <div>
+          <Button
+            variant="solid"
+            size="md"
+            borderRadius="full"
+            mr={4}
+            onClick={() => handleColorChange()}
+          >
+            <i class="fa">&#xf0eb;</i>
+          </Button>
           <Menu>
             <MenuButton p={1}>
               <NotificationBadge
                 count={notification.length}
                 effect={Effect.SCALE}
               />
-              <BellIcon fontSize="2xl" m={1} style={{ color: boxColor === 'black' ? '#fff' : '#000' }}/>
+              <BellIcon
+                fontSize="2xl"
+                m={1}
+                style={{ color: boxColor === "black" ? "#fff" : "#000" }}
+              />
             </MenuButton>
             <MenuList pl={2}>
               {!notification.length && "No New Messages"}
@@ -176,7 +200,15 @@ function SideDrawer({ boxColor}) {
             </MenuList>
           </Menu>
           <Menu>
-            <MenuButton as={Button} bg={boxColor === 'black' ? '#2E2E2E' : 'white' } rightIcon={<ChevronDownIcon style={{ color: boxColor === 'black' ? '#fff' : '#000' }}/>}>
+            <MenuButton
+              as={Button}
+              bg={boxColor === "black" ? "#2E2E2E" : "white"}
+              rightIcon={
+                <ChevronDownIcon
+                  style={{ color: boxColor === "black" ? "#fff" : "#000" }}
+                />
+              }
+            >
               <Avatar
                 size="sm"
                 cursor="pointer"
@@ -189,11 +221,11 @@ function SideDrawer({ boxColor}) {
                 <MenuItem>My Profile</MenuItem>{" "}
               </ProfileModal>
               <MenuDivider />
-              <MenuItem onClick={logoutHandler}>Logout</MenuItem>
-              <MenuDivider/>
               <EditModal user={user}>
                 <MenuItem>Edit Photo</MenuItem>
               </EditModal>
+              <MenuDivider />
+              <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </MenuList>
           </Menu>
         </div>
@@ -218,11 +250,13 @@ function SideDrawer({ boxColor}) {
             ) : (
               searchResult?.map((Fuser) => {
                 console.log(Fuser);
-                return <UserListItem
-                  key={Fuser._id}
-                  user={Fuser}
-                  handleFunction={() => accessChat(Fuser._id)}
-                />
+                return (
+                  <UserListItem
+                    key={Fuser._id}
+                    user={Fuser}
+                    handleFunction={() => accessChat(Fuser._id)}
+                  />
+                );
               })
             )}
             {loadingChat && <Spinner ml="auto" d="flex" />}

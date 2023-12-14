@@ -36,10 +36,7 @@ function Homepage() {
         borderRadius="lg"
         borderWidth="1px"
       >
-          <Button
-          position="absolute"
-          bottom="10"
-          left="10"
+        <Button
           variant="solid"
           size="md"
           borderRadius="full"
@@ -50,22 +47,30 @@ function Homepage() {
         >
           <i class="fa">&#xf0eb;</i>
         </Button>
-        <Text fontSize="4xl" fontFamily="Work sans" color={boxColor === "black" ? "whatsapp.100" : "black"}>
+        <Text
+          fontSize="4xl"
+          fontFamily="Work sans"
+          color={boxColor === "black" ? "whatsapp.100" : "black"}
+        >
           NISHU'S CHAT APP
         </Text>
       </Box>
       <Box bg={boxColor} w="100%" p={4} borderRadius="lg" borderWidth="1px">
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
-            <Tab color={boxColor === "black" ? "whatsapp.100" : "black"}>Login</Tab>
-            <Tab color={boxColor === "black" ? "whatsapp.100" : "black"}>Sign Up</Tab>
+            <Tab color={boxColor === "black" ? "whatsapp.100" : "black"}>
+              Login
+            </Tab>
+            <Tab color={boxColor === "black" ? "whatsapp.100" : "black"}>
+              Sign Up
+            </Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
-              <Login boxColor={boxColor}/>
+              <Login boxColor={boxColor} />
             </TabPanel>
             <TabPanel>
-              <Signup boxColor={boxColor}/>
+              <Signup boxColor={boxColor} />
             </TabPanel>
           </TabPanels>
         </Tabs>
