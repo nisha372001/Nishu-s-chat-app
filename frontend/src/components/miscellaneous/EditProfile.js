@@ -30,11 +30,12 @@ const EditModal = ({ user, children }) => {
     try {
       const config = {
         headers: {
+          Authorization: `Bearer ${user.token}`,
           "Content-type": "application/json",
         },
       };
       const { data } = await axios.post(
-        "/api/updatePic",
+        "/api/user/updatePic",
         {
           user,
           pic,
@@ -43,7 +44,7 @@ const EditModal = ({ user, children }) => {
       );
       console.log(data);
       toast({
-        title: "Updated Image",
+        title: "Image Updated",
         status: "success",
         duration: 5000,
         isClosable: true,

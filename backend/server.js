@@ -22,27 +22,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 
-app.post("/api/updatePic", (req,res) => {
-  const {pic,user} = req.body
-  console.log(pic,user.email)
-  const update = async() => {
-    const result = await User.updateOne(
-            {
-                email:user.email,
-            },
-            {
-                $set: {
-                    pic:pic,
-                }
-            }
-        )
-        console.log(result)
-        res.status(200).send("updated Image")
-  }
-  update()
-
-})
-
 // --------------------------deployment------------------------------
 
 const __dirname1 = path.resolve();

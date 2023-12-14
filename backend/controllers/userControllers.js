@@ -59,6 +59,48 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+//@description     Update user user
+//@route           POST /api/updatePic/
+//@access          Protected
+const updatePic = asyncHandler(async (req, res) => {
+  const { pic, user } = req.body;
+  console.log(pic, user.email);
+  try {
+    if (!user.email) {
+      console.log("User not found");
+      return res.sendStatus(400);
+    }
+
+    const userExists = await User.findOne({ email: user.email });
+
+    if (!userExists) {
+      res.status(400);
+      throw new Error("User does not exists");
+    }
+
+    const updatePhoto = await User.updateOne(
+      {
+        email: user.email,
+      },
+      {
+        $set: {
+          pic: pic,
+        },
+      }
+    );
+
+    if (updatePhoto) {
+      res.status(201).send("Image Updated");
+    } else {
+      res.status(400);
+      throw new Error("Failed to update image");
+    }
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
+});
+
 //@description     Auth the user
 //@route           POST /api/users/login
 //@access          Public
@@ -82,4 +124,4 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { allUsers, registerUser, authUser };
+module.exports = { allUsers, registerUser, authUser, updatePic };
