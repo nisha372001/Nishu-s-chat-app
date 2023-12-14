@@ -5,7 +5,7 @@ import ChatPage from "./Pages/ChatPage";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [backgroundImage, setBackgroundImage] = useState('');
+  const [backgroundImage, setBackgroundImage] = useState('')
 
   useEffect(() => {
     const changeImage = () => {
