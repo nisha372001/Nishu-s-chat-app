@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
-const Chat = require("../models/chatModel");
-const User = require("../models/userModel");
+const db = require("../models");
+const Chat = db.chatModel
+const User = db.userModel
 
 //@description     Create or fetch One to One Chat
 //@route           POST /api/chat/
