@@ -14,9 +14,8 @@ import Signup from "../components/Authentication/Signup";
 import { useState, useEffect } from "react";
 import { Button } from "@chakra-ui/react";
 
-function Homepage() {
+function Homepage({boxColor, handleColorChange}) {
   const history = useHistory();
-  const [boxColor, setBoxColor] = useState("white"); // new state variable
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
@@ -41,9 +40,7 @@ function Homepage() {
           size="md"
           borderRadius="full"
           mr={4}
-          onClick={() => {
-            setBoxColor(boxColor === "black" ? "white" : "black");
-          }}
+          onClick={() => handleColorChange()}
         >
           <i class="fa">&#xf0eb;</i>
         </Button>

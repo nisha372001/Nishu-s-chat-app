@@ -4,20 +4,10 @@ import Chatbox from "../components/Chatbox";
 import MyChats from "../components/MyChats";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
 import { ChatState } from "../Context/ChatProvider";
-import { useLocation } from "react-router-dom";
 
-const Chatpage = () => {
+const Chatpage = ({boxColor, handleColorChange}) => {
   const [fetchAgain, setFetchAgain] = useState(true);
   const { user } = ChatState();
-  const location = useLocation();
-  const boxColorp = location.state?.boxColor || 'white';
-  const [boxColor, setBoxColor] = useState(boxColorp);
-  const handleColorChange = () => {
-    boxColor === "black" ? 
-    setBoxColor("white") :
-    setBoxColor("black")
-  };
-  console.log(boxColor);
 
   return (
     <div style={{ width: "100%" }}>
